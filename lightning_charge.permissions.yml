@@ -1,0 +1,16 @@
+administer lightning_charge:
+  title: 'Administer Lightning Charge'
+  description: 'Configure the lightning charge functionality.'
+  restrict access: TRUE
+
+view lightning_charge invoices:
+  title: 'View Lightning Charge Invoices'
+
+edit lightning_charge invoices:
+  title: 'Edit Lightning Charge Invoices'
+
+delete lightning_charge invoices:
+  title: 'Delete Lightning Charge Invoices'
+
+create lightning_charge invoices:
+  title: 'Create Lightning Charge Invoices'

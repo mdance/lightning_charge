@@ -1,0 +1,9 @@
+default:
+  js:
+    js/lightning_charge.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+    - core/drupal.ajax
+    - core/drupalSettings

@@ -1,0 +1,66 @@
+<?php
+/**
+ * @file
+ * Provides lightning charge functionality.
+ */
+
+use Drupal\Core\Url;
+use Drupal\lightning_charge\LightningChargeConstants;
+use Drupal\lightning_charge\Events\LightningChargeEvents;
+
+/**
+ * Implements hook_page_attachments().
+ *
+ * Responsible for adding styling, and javascript settings.
+ */
+function lightning_charge_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'lightning_charge/default';
+
+  /** @var \Drupal\lightning_charge\LightningChargeServiceInterface $service */
+  $service = \Drupal::service('lightning_charge');
+
+  $js = [];
+
+  $js['websocket'] = $service->getWebSocket();
+  $js['websocket_url'] = $service->getWebSocketUrl();
+  $js['payment_stream'] = $service->getPaymentStream();
+  $js['payment_stream_url'] = $service->getPaymentStreamUrl();
+
+  $service->getCsrfToken($id, $token);
+
+  $route_name = 'lightning_charge.js';
+
+  $options = [];
+
+  $options['query'] = [
+    'id' => $id,
+    'token' => $token,
+  ];
+
+  $url = Url::fromRoute($route_name, [], $options);
+  $url = $url->toString();
+
+  $js['js_url'] = $url;
+  $js['event'] = LightningChargeEvents::JS;
+  $js['selector'] = LightningChargeConstants::SELECTOR;
+
+  $attachments['#attached']['drupalSettings']['lightning_charge'] = $js;
+}
+
+/**
+ * Provides the page preprocess.
+ */
+function lightning_charge_preprocess_page(&$variables) {
+  $page = &$variables['page'];
+
+  $selector = LightningChargeConstants::SELECTOR;
+
+  $page['content']['lightning_charge'] = [
+    '#type' => 'container',
+    '#attributes' => [
+      'id' => [
+        $selector,
+      ],
+    ],
+  ];
+}

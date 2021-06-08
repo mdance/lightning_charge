@@ -1,0 +1,5 @@
+name: Lightning Charge
+type: module
+description: 'Provides lightning charge functionality.'
+package: Lightning
+core_version_requirement: ^8 || ^9

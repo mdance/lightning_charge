@@ -1,0 +1,27 @@
+mode: 'test'
+test:
+  schema: http
+  host: localhost
+  port: 9112
+  username: api-token
+  webhook: true
+  webhook_type: 'default'
+  webhook_url: ''
+  websocket: true
+  websocket_url: 'wss://payments.lightning.localhost'
+  payment_stream: true
+  payment_stream_url: 'http://payments.lightning.localhost/payment-stream'
+live:
+  schema: http
+  host: localhost
+  port: 9112
+  username: api-token
+  webhook: true
+  webhook_type: 'default'
+  webhook_url: ''
+  websocket: true
+  websocket_url: 'wss://payments.lightning.localhost'
+  payment_stream: true
+  payment_stream_url: 'http://payments.lightning.localhost/payment-stream'
+default_currency: 'USD'
+default_expiry: 3600

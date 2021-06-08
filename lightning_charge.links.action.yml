@@ -1,0 +1,6 @@
+lightning_charge.invoice.new:
+  route_name: lightning_charge.invoice.new
+  title: 'Add New Invoice'
+  appears_on:
+    - lightning_charge.invoices
+    - lightning_charge.invoice.view

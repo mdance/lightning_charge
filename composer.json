@@ -1,0 +1,10 @@
+{
+    "name": "drupal/lightning-charge",
+    "type": "drupal-module",
+    "description": "Provides lightning charge functionality.",
+    "version": "0.1.0",
+    "license": "MIT",
+    "require": {
+        "bacon/bacon-qr-code": "^2.0"
+    }
+}

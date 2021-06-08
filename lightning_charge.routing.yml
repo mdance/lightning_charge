@@ -1,0 +1,86 @@
+lightning_charge.settings:
+  path: '/admin/config/services/lightning-charge'
+  defaults:
+    _form: '\Drupal\lightning_charge\Form\SettingsForm'
+    _title: 'Lightning Charge'
+  requirements:
+    _permission: 'administer lightning_charge'
+
+lightning_charge.invoices:
+  path: '/admin/config/services/lightning-charge/invoices'
+  defaults:
+    _form: '\Drupal\lightning_charge\Form\InvoicesForm'
+    _title: 'Invoices'
+  requirements:
+    _permission: 'view lightning_charge invoices'
+
+lightning_charge.invoice.view:
+  path: '/admin/config/services/lightning-charge/invoices/{invoice}'
+  defaults:
+    _controller: '\Drupal\lightning_charge\Controller\DefaultController::view'
+    _title: 'Invoice Details'
+    _title_callback: '\Drupal\lightning_charge\Controller\DefaultController::invoiceTitle'
+  requirements:
+    _permission: 'view lightning_charge invoices'
+  options:
+    parameters:
+      invoice:
+        type: 'lightning_charge_invoice'
+
+lightning_charge.invoice.edit:
+  path: '/admin/config/services/lightning-charge/invoices/{invoice}/edit'
+  defaults:
+    _form: '\Drupal\lightning_charge\Form\InvoiceForm'
+    _title: 'Edit Invoice Details'
+    _title_callback: '\Drupal\lightning_charge\Controller\DefaultController::invoiceTitle'
+  requirements:
+    _permission: 'edit lightning_charge invoices'
+  options:
+    parameters:
+      invoice:
+        type: 'lightning_charge_invoice'
+
+lightning_charge.invoice.delete:
+  path: '/admin/config/services/lightning-charge/invoices/{invoice}/delete'
+  defaults:
+    _form: '\Drupal\lightning_charge\Form\DeleteInvoiceForm'
+    _title: 'Delete Invoice'
+  requirements:
+    _permission: 'delete lightning_charge invoices'
+  options:
+    parameters:
+      invoice:
+        type: 'lightning_charge_invoice'
+
+lightning_charge.qrcode:
+  path: '/admin/config/services/lightning-charge/qrcode/{data}'
+  defaults:
+    _controller: '\Drupal\lightning_charge\Controller\DefaultController::qrCode'
+    _title: 'QR Code'
+  requirements:
+    _permission: 'view lightning_charge invoices'
+
+lightning_charge.invoice.new:
+  path: '/admin/config/services/lightning-charge/invoices/new'
+  defaults:
+    _form: '\Drupal\lightning_charge\Form\InvoiceForm'
+    _title: 'Create New Invoice'
+  requirements:
+    _permission: 'create lightning_charge invoices'
+
+lightning_charge.webhook:
+  path: '/lightning-charge/webhook'
+  defaults:
+    _controller: '\Drupal\lightning_charge\Controller\DefaultController::webhook'
+    _title: 'Webhook'
+  requirements:
+    _access: 'TRUE'
+
+lightning_charge.js:
+  path: '/lightning-charge/js'
+  defaults:
+    _controller: '\Drupal\lightning_charge\Controller\DefaultController::js'
+    _title: 'Lightning Charge'
+  requirements:
+    _access: 'TRUE'
+    #_csrf_token: 'TRUE'

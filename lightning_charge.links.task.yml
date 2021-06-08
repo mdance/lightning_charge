@@ -1,0 +1,29 @@
+lightning_charge.settings:
+  title: 'Settings'
+  description: 'Configure lightning charge functionality.'
+  route_name: lightning_charge.settings
+  base_route: lightning_charge.settings
+
+lightning_charge.invoices:
+  title: 'Invoices'
+  description: 'View invoices.'
+  route_name: lightning_charge.invoices
+  base_route: lightning_charge.settings
+
+lightning_charge.invoice.view:
+  title: 'View'
+  description: 'View an invoice.'
+  route_name: lightning_charge.invoice.view
+  base_route: lightning_charge.invoice.view
+
+lightning_charge.invoice.edit:
+  title: 'Edit'
+  description: 'Edit an invoice.'
+  route_name: lightning_charge.invoice.edit
+  base_route: lightning_charge.invoice.view
+
+lightning_charge.invoice.delete:
+  title: 'Delete'
+  description: 'Delete an invoice.'
+  route_name: lightning_charge.invoice.delete
+  base_route: lightning_charge.invoice.view

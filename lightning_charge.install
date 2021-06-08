@@ -1,0 +1,56 @@
+<?php
+/**
+ * @file
+ * Provides install and update hooks.
+ */
+
+use Drupal\Core\Database\Database;
+use Drupal\lightning_charge\LightningChargeConstants;
+
+/**
+ * Implements hook_schema().
+ */
+function lightning_charge_schema() {
+  $key = LightningChargeConstants::TABLE_TOKENS;
+
+  $output[$key] = [
+    'fields' => [
+      'id' => [
+        'description' => 'Provides the id',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'token' => [
+        'description' => 'Provides the token',
+        'type' => 'varchar_ascii',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'invoice_id' => [
+        'description' => 'Provides the invoice id',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  return $output;
+}
+
+/**
+ * Creates the invoices table.
+ */
+function lightning_charge_update_9001(&$sandbox) {
+  $tables = lightning_charge_schema();
+
+  $name = LightningChargeConstants::TABLE_TOKENS;
+
+  $schema = Database::getConnection()->schema();
+
+  $schema->createTable($name, $tables[$name]);
+}
