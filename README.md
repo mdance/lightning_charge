@@ -10,14 +10,15 @@ https://github.com/ElementsProject/lightning-charge
 
 Screenshots at: https://photos.app.goo.gl/rccz95k8HRJcmnCP9
 
-/Applications/Bitcoin-Qt.app/Contents/MacOS/Bitcoin-Qt --testnet --printtoconsole -daemon
-lightningd
+`/Applications/Bitcoin-Qt.app/Contents/MacOS/Bitcoin-Qt --testnet --printtoconsole -daemon`
+`lightningd`
 
-# lightning-charge daemon must be run with:
-NODE_TLS_REJECT_UNAUTHORIZED=0 yarn start --allow-cors="https://lightning.localhost"
+lightning-charge daemon must be run with:
+`NODE_TLS_REJECT_UNAUTHORIZED=0 yarn start --allow-cors="https://lightning.localhost"`
 
 nginx config for payments.lightning.localhost
 
+```
 server {
     listen 443 ssl;
     server_name payments.lightning.localhost;
@@ -48,3 +49,4 @@ server {
   server_name payments.lightning.localhost;
   return 301 https://payments.lightning.localhost$request_uri;
 }
+```
